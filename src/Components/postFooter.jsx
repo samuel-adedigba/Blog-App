@@ -16,13 +16,13 @@ const PostFooter = ({postCategory,postLanguage, postCountry}) => {
 
     <div>
         {postLanguage.map((lang,i)=>(
-          <button key={i} > {lang}</button>
+           <Link to={`/language/${lang}`} > <button key={i} > {lang}</button>  </Link>
         )) }
     </div>
 
       <div>
         {postCountry.map((country,i)=>(
-          <button key={i}> {country}</button>
+         <Link to={`/country/${country}`}  >  <button key={i}> {country}</button>   </Link>
         ))}
       </div>
     </div>

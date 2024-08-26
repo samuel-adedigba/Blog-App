@@ -18,9 +18,9 @@ Home
         Health
         </Link> </li>
 
-        <li> <Link to='/category'>
+        {/* <li> <Link to='/category'>
         Tags
-        </Link> </li>
+        </Link> </li> */}
 
         <li> <Link to='/profile'>
         Profile

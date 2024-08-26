@@ -1,11 +1,11 @@
 import React from 'react'
-import ProfilePost from '../Components/ProfilePost'
+import BlogForm from '../Components/UserFeatures/BlogForm'
 
 
 const Profile = () => {
   return (
     <div>
-      <ProfilePost />
+      <BlogForm />
     </div>
   )
 }
