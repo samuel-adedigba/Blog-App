@@ -3,67 +3,116 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const BlogForm = ({ addNewBlog }) => {
-  const [BlogTitle, setBlogTitle] = useState("");
-  const [BlogImage, setBlogImage] = useState(null);
-  const [BlogBody, setBlogBody] = useState("");
-  const [BlogAuthor, setBlogAuthor] = useState("");
+  const [blog, setBlog] = useState({
+    title: "",
+    subtitle: "",
+    content: "",
+    author: "",
+    tags: [],
+    date: new Date().toISOString(),
+    comments: [],
+  });
 
-  const setImage = (e) => {
-    setBlogImage(e.target.files[0]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setBlog({
+      ...blog,
+      [name]: value,
+    });
   };
 
-  const handlePost = async(e) => {
-    e.preventDefault();
-    //create an object for the blog post form
-    const blogFormDetails = {
-      BlogTitle,
-      BlogImage: URL.createObjectURL(BlogImage),
-      BlogBody,
-      BlogAuthor,
-      createdAt: new Date().toLocaleDateString(),
-    };
-    //call on the blog object post details, with a function so it can collect and post it
-    addNewBlog = () => blogFormDetails;
-    console.log("blogFormDetails:", blogFormDetails);
+  const handleTagsChange = (e) => {
+    setBlog({
+      ...blog,
+      tags: e.target.value.split(",").map((tag) => tag.trim()),
+    });
+  };
 
-    //reset the form
-    setBlogTitle("");
-    setBlogAuthor("");
-    setBlogImage(null);
-    setBlogBody("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/new/blog`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(blog),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      addNewBlog(data);
+      setBlog({
+        title: "",
+        subtitle: "",
+        content: "",
+        author: "",
+        tags: [],
+        date: new Date().toISOString(),
+        comments: []
+      });
+      console.log("Success:", data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
-    <form onSubmit={handlePost}>
-      <label htmlFor="BlogImage">Post Cover Picture for Your Blog </label>
-      <input type="file" onChange={setImage} />
-
-      <label htmlFor="BlogTitle">Blog Title</label>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
-        name="BlogTitle"
-        value={BlogTitle}
-        onChange={(e) => setBlogTitle(e.target.value)}
+        name="title"
+        placeholder="Title"
+        value={blog.title}
+        autoComplete="on"
+        onChange={handleChange}
+        required
       />
-
-      <label htmlFor="BlogBody">Blog Content</label>
+      <input
+        type="text"
+        name="subtitle"
+        placeholder="Subtitle"
+        value={blog.subtitle}
+        autoComplete="on"
+        onChange={handleChange}
+        required
+      />
       <ReactQuill
-        name="BlogBody"
-        value={BlogBody}
-        onChange={setBlogBody}
-        id="BlogBody"
+        name="content"
+        placeholder="Write Your Blog Content here..."
+        value={blog.content}
+        autoComplete="on"
+        onChange={(content)=> setBlog({...blog, content})}
+        required
       />
-
-      <label htmlFor="BlogAuthor">Blog Title</label>
       <input
         type="text"
-        name="BlogAuthor"
-        value={BlogAuthor}
-        onChange={(e) => setBlogAuthor(e.target.value)}
+        name="author"
+        placeholder="Author"
+        value={blog.author}
+        autoComplete="on"
+        onChange={handleChange}
+        required
       />
-      <button type="submit"> UPLOAD</button>
+      <input
+        type="text"
+        name="tags"
+        placeholder="Enter tags, separated by commas"
+        value={blog.tags.join(", ")}
+        onChange={handleTagsChange}
+        required
+      />
+      <button type="submit">Create Your Blog </button>
     </form>
   );
 };
 
 export default BlogForm;
+
+{
+  /* <label htmlFor="BlogImage">Post Cover Picture for Your Blog </label>
+      <input type="file" onChange={(e)=> e.target.files[0]} /> */
+}

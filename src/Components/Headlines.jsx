@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import PostContent from './postContent';
-import PostFooter from './postFooter';
-import PostHeader from './postHeader';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import PostContent from "./postContent";
+import PostFooter from "./postFooter";
+import PostHeader from "./postHeader";
 
 const Headlines = () => {
-  const {categoryName}= useParams();
   const [update, setUpdate] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -22,17 +20,15 @@ const Headlines = () => {
         }
         const result = await response.json();
         setUpdate(result.results);
-      } 
-      catch (error) {
+      } catch (error) {
         setError(error.message);
-      }
-      finally {
+      } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [ ]);
+  }, []);
 
   if (loading) {
     return <div>Loading news headlines...</div>;
@@ -43,21 +39,19 @@ const Headlines = () => {
   }
 
   return (
-   
-      <div>
-        {update.map((item) => (
-          <div key={item.id} >
-          <PostHeader  postName={item.name} 
-            imageIcon={item.icon}
-             /> 
-            <PostContent postDescription={item.description} postUrl={item.url}
-            />
-            <PostFooter postCategory={item.category} postLanguage={item.language} postCountry={item.country} />
-            
-          </div>
-        ))}
-      </div>
-    
+    <div>
+      {update.map((item) => (
+        <div key={item.id}>
+          <PostHeader postName={item.name} imageIcon={item.icon} />
+          <PostContent postDescription={item.description} postUrl={item.url} />
+          <PostFooter
+            postCategory={item.category}
+            postLanguage={item.language}
+            postCountry={item.country}
+          />
+        </div>
+      ))}
+    </div>
   );
 };
 

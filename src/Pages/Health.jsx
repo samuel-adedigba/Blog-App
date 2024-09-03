@@ -1,34 +1,28 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 
 const Health = () => {
   const [health, setHealth] = useState([]);
-  const [error, setError] = useState(null)
-  const [loading, setLoading] =useState(true)
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
- useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const reply = fetch ('')
+        const reply = fetch("");
         if (!reply.ok) {
-          throw new Error(`${reply.status}`);                    
+          throw new Error(`${reply.status}`);
         }
-        const res = await reply.json()
-        setHealth(res.results)
-        setLoading(true)        
+        const res = await reply.json();
+        setHealth(res.results);
+        setLoading(true);
       } catch (error) {
-        setError(error.message)
+        setError(error.message);
       }
-    }
-fetchData()
- },[])
+    };
+    fetchData();
+  }, []);
 
+  return <div></div>;
+};
 
-  return (
-    <div>
-    
-    </div>
-  )
-}
-
-export default Health
-
+export default Health;

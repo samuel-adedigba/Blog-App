@@ -1,15 +1,13 @@
-import React from 'react'
-import DisplayBlog from '../Components/UserFeatures/displayBlog'
-
+import React from "react";
+import BlogPost from "../Components/UserFeatures/BlogPost";
 
 const Home = () => {
   return (
     <div>
-    vvvvvvvvvvvvvvvvvvvvvvvv
-    <DisplayBlog />
-    
+      vvvvvvvvvvvvvvvvvvvvvvvv
+      <BlogPost />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

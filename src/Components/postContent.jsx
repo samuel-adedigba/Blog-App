@@ -1,15 +1,16 @@
-import React from 'react'
+import React from "react";
 
-const PostContent = ({postDescription, postUrl}) => {
+const PostContent = ({ postDescription, postUrl }) => {
   return (
     <div>
-      <p> 
-        {postDescription}
-      </p>
+      <p>{postDescription}</p>
 
-      <a href={postUrl} target='_blank'> Read more</a>
+      <a href={postUrl} target="_blank">
+        {" "}
+        Read more
+      </a>
     </div>
-  )
-}
+  );
+};
 
-export default PostContent
+export default PostContent;

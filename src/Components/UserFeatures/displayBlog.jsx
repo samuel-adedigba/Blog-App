@@ -1,15 +1,13 @@
-import React from 'react'
-import BlogPost from './BlogPost'
-import CommentPost from './CommentPost'
+// import React from 'react'
+// import BlogPost from './BlogPost'
 
+// const DisplayBlog = () => {
+//   return (
+//     <div>
+//    <BlogPost />
+   
+//     </div>
+//   )
+// }
 
-const DisplayBlog = () => {
-  return (
-    <div>
-   <BlogPost />
-   <CommentPost />
-    </div>
-  )
-}
-
-export default DisplayBlog
+// export default DisplayBlog

@@ -1,13 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const PostHeader = ({postName, imageIcon}) => {
+const PostHeader = ({ postName, imageIcon }) => {
   return (
     <div>
-         <b> {postName} </b>
-      <img src={imageIcon} alt={`${postName}'s profile` } />
-     
+      <b> {postName} </b>
+      <img src={imageIcon} alt={`${postName}'s profile`} />
     </div>
-  )
-}
+  );
+};
 
-export default PostHeader
+export default PostHeader;
