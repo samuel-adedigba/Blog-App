@@ -8,7 +8,7 @@ const Headlines = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const apiUrl = `https://newsdata.io/api/1/sources?apikey=pub_50193983be3748f3c37d900d7dd9ddc67ffc`;
+  const apiUrl = `https://newsdata.io/api/1/sources?apikey=pub_50193983be3748f3c37d900d7dd9ddc67ffc2`;
 
   useEffect(() => {
     const fetchData = async () => {

@@ -25,7 +25,7 @@ const Tags = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://newsdata.io/api/1/sources?${setType}=${setValue}&apikey=pub_50193983be3748f3c37d900d7dd9ddc67ffc`
+          `https://newsdata.io/api/1/sources?${setType}=${setValue}&apikey=pub_50193983be3748f3c37d900d7dd9ddc67ffc2`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
