@@ -6,6 +6,8 @@ import Health from './Pages/Health';
 import News from './Pages/News';
 import Tags from './Pages/Tags';
 import Profile from './Pages/Profile';
+import ListReadLater from './Components/UserFeatures/ListReadLater'
+
 
 function App() {
 
@@ -20,6 +22,7 @@ function App() {
      <Route path='/category/:categoryName' element={<Tags/>}/>
      <Route path='/country/:countryName' element={<Tags/>}/>
      <Route path='/language/:languageName' element={<Tags/>}/>
+     <Route path='/readlater' element={ <ListReadLater/> } />
     </Routes>
   </Router>
   )

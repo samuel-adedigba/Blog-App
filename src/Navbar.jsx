@@ -21,9 +21,10 @@ const Navbar = () => {
           <Link to="/health">Health</Link>{" "}
         </li>
 
-        {/* <li> <Link to='/category'>
-        Tags
-        </Link> </li> */}
+        <li>
+          {" "}
+          <Link to="/readlater">Read Posts Later</Link>{" "}
+        </li>
 
         <li>
           {" "}
